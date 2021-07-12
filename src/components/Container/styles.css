@@ -1,0 +1,28 @@
+.Container {
+  margin: 0 auto;
+  padding: 4em 1em;
+}
+
+@media (min-width: 1200px) {
+  .Container {
+    max-width: 1165px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .Container {
+    max-width: 960px;
+  }
+}
+
+@media (max-width: 991px) {
+  .Container {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 767px) {
+  .Container {
+    max-width: 540px;
+  }
+}

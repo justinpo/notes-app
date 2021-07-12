@@ -1,0 +1,52 @@
+.Note {
+  border-radius: 12px;
+  background-color: var(--neutral-0);
+  border: 1px solid var(--neutral-3);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Note__title {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 0.5em 0;
+  color: var(--neutral-6);
+}
+
+.Note__content {
+  font-size: 1rem;
+  margin: 0 0 0.5em 0;
+  color: var(--neutral-6);
+  white-space: pre-wrap;
+}
+
+.Note__actions {
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  transition: 0.2s ease opacity;
+  justify-content: flex-end;
+}
+
+.Note:hover > .Note__actions {
+  visibility: visible;
+  opacity: 1;
+}
+
+.Note__actionButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.Note__actionButton:hover > .Note__actionButton__icon {
+  color: var(--neutral-5);
+  transition: 0.3s ease color;
+}
+
+.Note__actionButton__icon {
+  font-size: 1.125rem;
+  color: var(--neutral-4);
+}

@@ -1,0 +1,19 @@
+.Notes__heading {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--neutral-6);
+  margin: 0;
+}
+
+.Notes__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 12px;
+}
+
+.Notes__titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0 2em;
+}

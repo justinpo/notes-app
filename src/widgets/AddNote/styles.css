@@ -1,0 +1,28 @@
+.AddNote {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--neutral-3);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0.75em;
+  box-shadow: 0px 12px 24px -12px rgba(0, 25, 68, 0.15);
+  max-width: 720px;
+  margin: 0 auto 2em;
+}
+
+.AddNote__input--title {
+  margin: 0 0 1em 0;
+  border: none;
+  outline: none;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.AddNote__input--content {
+  font-size: 0.875rem;
+  border: none;
+  outline: none;
+  font-family: Inter, sans-serif;
+  resize: none;
+}
