@@ -17,6 +17,8 @@
   --primary-6: #1810a4;
 
   --red: #d15240;
+
+  --box-shadow: 0px 12px 24px -12px rgba(0, 25, 68, 0.15);
 }
 
 html {

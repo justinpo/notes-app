@@ -1,6 +1,6 @@
 import './styles.css';
 
-const Spinner = () => {
+const Spinner = (): JSX.Element => {
   return (
     <div className="Spinner__container">
       <svg className="Spinner" viewBox="25 25 50 50">

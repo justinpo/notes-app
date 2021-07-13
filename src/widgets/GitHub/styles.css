@@ -1,0 +1,22 @@
+.GitHub {
+  position: fixed;
+  bottom: 3em;
+  right: 3em;
+  height: 64px;
+  width: 64px;
+  border: 1px solid var(--neutral-3);
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 1em 0;
+  box-sizing: border-box;
+  box-shadow: 0px 12px 24px -12px rgba(0, 25, 68, 0.5);
+  opacity: 1;
+  transition: 0.2s ease opacity;
+}
+
+.GitHub:hover {
+  opacity: 0.75;
+}
