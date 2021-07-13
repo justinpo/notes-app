@@ -44,7 +44,7 @@ const EditNote = ({ isOpen, handleClose, note }: EditNoteProps): JSX.Element => 
   const ref = useRef<HTMLFormElement>(null!);
   const notesRef = firestore.collection('notes');
   const { register, handleSubmit, reset, watch, setValue } = useForm();
-  const enterKeyPress = useKeyPress('Enter', true);
+  const enterKeyPress = useKeyPress('Enter');
   const shiftKeyPress = useKeyPress('Shift');
   const escKeyPress = useKeyPress('Escape');
   const watchContent = watch('content', '');

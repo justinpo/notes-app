@@ -65,6 +65,7 @@ const NotesRouter = (): JSX.Element => {
           <div className="Notes__grid">
             {filteredNotes?.map(({ id, title, content, date_time }) => (
               <Note
+                key={id}
                 id={id}
                 title={title}
                 content={content}
