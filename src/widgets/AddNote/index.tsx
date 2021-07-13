@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { isEmpty } from 'lodash';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useKeyPress, useOnClickOutside } from 'hooks';
 
@@ -17,8 +18,9 @@ const AddNote = (): JSX.Element => {
   const [isToggled, setIsToggled] = useState(false);
   const { register, handleSubmit, reset, watch } = useForm();
   const notesRef = firestore.collection('notes');
-  const enterKeyPress = useKeyPress('Enter');
+  const enterKeyPress = useKeyPress('Enter', true);
   const shiftKeyPress = useKeyPress('Shift');
+  const escKeyPress = useKeyPress('Escape');
   const watchContent = watch('content', '');
 
   const onSubmit = ({ title, content }: Note) => {
@@ -35,13 +37,24 @@ const AddNote = (): JSX.Element => {
   useOnClickOutside(ref, () => setIsToggled(false));
 
   useEffect(() => {
-    if (enterKeyPress && !shiftKeyPress && watchContent !== '') {
+    if (!isEmpty(watchContent)) {
+      setIsToggled(true);
+    }
+  }, [watchContent]);
+
+  useEffect(() => {
+    if (escKeyPress && isEmpty(watchContent)) {
+      setIsToggled(false);
+      reset({ title: null, content: null });
+    }
+
+    if ((enterKeyPress || escKeyPress) && !shiftKeyPress && !isEmpty(watchContent)) {
       handleSubmit(onSubmit)();
       reset({ title: null, content: null });
       setIsToggled(false);
     }
     // eslint-disable-next-line
-  }, [enterKeyPress]);
+  }, [enterKeyPress, escKeyPress]);
 
   return (
     <div ref={ref}>

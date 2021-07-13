@@ -3,7 +3,7 @@ import { MutableRefObject, useEffect } from 'react';
 // Source: https://usehooks.com/useOnClickOutside/
 
 const useOnClickOutside = (
-  ref: MutableRefObject<HTMLDivElement>,
+  ref: MutableRefObject<HTMLDivElement> | MutableRefObject<HTMLFormElement>,
   handler: Function
 ) => {
   useEffect(

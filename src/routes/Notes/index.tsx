@@ -1,16 +1,24 @@
 import { useState, useEffect } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { DocumentData } from '@firebase/firestore-types';
+import { DocumentData, Timestamp } from '@firebase/firestore-types';
 import firestore from 'database';
 
 import { Note, Container, Spinner, Search } from 'components';
-import { AddNote } from 'widgets';
+import { AddNote, EditNote } from 'widgets';
 
 import './styles.css';
+
+interface NoteObject {
+  id: string;
+  title: string;
+  content: string;
+  dateTime: Timestamp;
+}
 
 const NotesRouter = (): JSX.Element => {
   const [searchString, setSearchString] = useState<string>('');
   const [filteredNotes, setFilteredNotes] = useState<DocumentData[]>();
+  const [noteToView, setNoteToView] = useState<NoteObject | null>(null);
 
   const notesRef = firestore.collection('notes');
 
@@ -37,22 +45,38 @@ const NotesRouter = (): JSX.Element => {
   }, [notes, isNotesLoading, searchString]);
 
   return (
-    <Container>
-      <div className="Notes__titlebar">
-        <h3 className="Notes__heading">📝 Notes</h3>
-        <Search onChange={(e) => setSearchString(e.target.value)} />
-      </div>
-      <AddNote />
-      {isNotesLoading ? (
-        <Spinner />
-      ) : (
-        <div className="Notes__grid">
-          {filteredNotes?.map(({ id, title, content }) => (
-            <Note id={id} title={title} content={content} />
-          ))}
-        </div>
+    <>
+      {noteToView != null && (
+        <EditNote
+          isOpen={noteToView != null}
+          handleClose={() => setNoteToView(null)}
+          note={noteToView}
+        />
       )}
-    </Container>
+      <Container>
+        <div className="Notes__titlebar">
+          <h3 className="Notes__heading">📝 Notes</h3>
+          <Search onChange={(e) => setSearchString(e.target.value)} />
+        </div>
+        <AddNote />
+        {isNotesLoading ? (
+          <Spinner />
+        ) : (
+          <div className="Notes__grid">
+            {filteredNotes?.map(({ id, title, content, date_time }) => (
+              <Note
+                id={id}
+                title={title}
+                content={content}
+                onClick={() =>
+                  setNoteToView({ id, title, content, dateTime: date_time })
+                }
+              />
+            ))}
+          </div>
+        )}
+      </Container>
+    </>
   );
 };
 

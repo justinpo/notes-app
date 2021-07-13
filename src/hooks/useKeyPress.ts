@@ -5,7 +5,7 @@ type EventProps = {
   preventDefault: Function;
 };
 
-const useKeyPress = (targetKey: string) => {
+const useKeyPress = (targetKey: string, preventsDefault: Boolean = false) => {
   // State for keeping track of whether key is pressed
   const [keyPressed, setKeyPressed] = useState(false);
 
@@ -13,7 +13,9 @@ const useKeyPress = (targetKey: string) => {
   const downHandler = (event: EventProps) => {
     if (event.key === targetKey) {
       setKeyPressed(true);
-      event.preventDefault();
+      if (preventsDefault) {
+        event.preventDefault();
+      }
     }
   };
 
@@ -21,7 +23,9 @@ const useKeyPress = (targetKey: string) => {
   const upHandler = (event: EventProps) => {
     if (event.key === targetKey) {
       setKeyPressed(false);
-      event.preventDefault();
+      if (preventsDefault) {
+        event.preventDefault();
+      }
     }
   };
 

@@ -17,3 +17,21 @@
   align-items: center;
   margin: 0 0 2em;
 }
+
+@media (max-width: 991px) {
+  .Notes__grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .Notes__titlebar {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 0 1.5em;
+  }
+
+  .Notes__grid {
+    grid-template-columns: 1fr;
+  }
+}
